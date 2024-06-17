@@ -1,7 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:app_nghe_nhac/firebase/fire_base_auth.dart';
+
 class SignUpController extends GetxController {
+  final _firAuth = FirAuth();
   final formKey = GlobalKey<FormState>();
 
   String? email;
@@ -56,6 +61,12 @@ class SignUpController extends GetxController {
   void onChangeCheckSex(String valuesex) {
     sex = valuesex;
     formKey.currentState?.validate();
+  }
+
+  void signUp(String email, String passWord, String entryPassword, String hoTen,
+      String addRess, String sex, Function onSuccess) {
+    _firAuth.signUp(
+        email, passWord, entryPassword, hoTen, addRess, sex, onSuccess);
   }
 
   bool containsSpecialCharacters(String text) {

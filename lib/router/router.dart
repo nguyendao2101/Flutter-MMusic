@@ -1,7 +1,17 @@
-import 'package:app_nghe_nhac/fearture/SignUp/signUp_binding.dart';
-import 'package:app_nghe_nhac/fearture/SignUp/signUp_view.dart';
+import 'package:app_nghe_nhac/View/setting/setting_binding.dart';
+import 'package:app_nghe_nhac/View/setting/setting_view.dart';
+import 'package:app_nghe_nhac/View/sings/sing_binding.dart';
+import 'package:app_nghe_nhac/View/sings/sing_view.dart';
+import 'package:app_nghe_nhac/View/home/home_binding.dart';
+import 'package:app_nghe_nhac/View/home/home_view.dart';
+import 'package:app_nghe_nhac/fearture/signUp/signUp_binding.dart';
+import 'package:app_nghe_nhac/fearture/signUp/signUp_view.dart';
+import 'package:app_nghe_nhac/fearture/main_view/main_binding.dart';
+import 'package:app_nghe_nhac/fearture/main_view/main_view.dart';
 import 'package:app_nghe_nhac/fearture/login/login_binding.dart';
 import 'package:app_nghe_nhac/fearture/login/login_view.dart';
+import 'package:app_nghe_nhac/fearture/splash_tabview/splash_binding.dart';
+import 'package:app_nghe_nhac/fearture/splash_tabview/splash_view.dart';
 import 'package:get/get.dart';
 
 class AppRouter {
@@ -15,11 +25,41 @@ class AppRouter {
       name: AppRouterName.signup,
       page: () => const SignUpView(),
       binding: SignUpBinding(),
-    )
+    ),
+    GetPage(
+      name: AppRouterName.main,
+      page: () => const MainView(),
+      binding: MainBinding(),
+    ),
+    GetPage(
+      name: AppRouterName.splash,
+      page: () => const SplashView(),
+      binding: SplashBinding(),
+    ),
+    GetPage(
+      name: AppRouterName.home,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: AppRouterName.sings,
+      page: () => const SingView(),
+      binding: SingBinding(),
+    ),
+    GetPage(
+      name: AppRouterName.setting,
+      page: () => const SettingView(),
+      binding: SettingBinding(),
+    ),
   ];
 }
 
 class AppRouterName {
   static const login = '/login';
   static const signup = '/sign_up';
+  static const main = '/main';
+  static const splash = '/splash';
+  static const home = '/home';
+  static const sings = '/sings';
+  static const setting = '/setting';
 }

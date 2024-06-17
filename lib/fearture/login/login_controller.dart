@@ -1,3 +1,4 @@
+import 'package:app_nghe_nhac/firebase/fire_base_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -63,5 +64,10 @@ class LoginController extends GetxController {
     } else {
       return null;
     }
+  }
+
+  onlogin() {
+    FirAuth.signInWithEmailAndPassword(
+        emailController.text, passwordController.text);
   }
 }
