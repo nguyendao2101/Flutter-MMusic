@@ -1,184 +1,282 @@
-// part of 'album_response.g.dart';
+class GetMusicChartResponse {
+  Tracks? tracks;
+  Tracks? albums;
+  Tracks? artists;
+  Tracks? playlists;
+  Tracks? podcasts;
 
-// @JsonSerializable()
-// class GetListAmbumTracks {
-//   @JsonKey(name: "tracks")
-//   Tracks tracks;
+  GetMusicChartResponse(
+      {this.tracks, this.albums, this.artists, this.playlists, this.podcasts});
 
-//   GetListAmbumTracks({
-//     required this.tracks,
-//   });
+  GetMusicChartResponse.fromJson(Map<String, dynamic> json) {
+    tracks = json['tracks'] != null ? Tracks.fromJson(json['tracks']) : null;
+    albums = json['albums'] != null ? Tracks.fromJson(json['albums']) : null;
+    artists = json['artists'] != null ? Tracks.fromJson(json['artists']) : null;
+    playlists =
+        json['playlists'] != null ? Tracks.fromJson(json['playlists']) : null;
+    podcasts =
+        json['podcasts'] != null ? Tracks.fromJson(json['podcasts']) : null;
+  }
 
-//   factory GetListAmbumTracks.fromJson(Map<String, dynamic> json) =>
-//       _$GetListAmbumTracksFromJson(json);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (tracks != null) {
+      data['tracks'] = tracks!.toJson();
+    }
+    if (albums != null) {
+      data['albums'] = albums!.toJson();
+    }
+    if (artists != null) {
+      data['artists'] = artists!.toJson();
+    }
+    if (playlists != null) {
+      data['playlists'] = playlists!.toJson();
+    }
+    if (podcasts != null) {
+      data['podcasts'] = podcasts!.toJson();
+    }
+    return data;
+  }
+}
 
-//   Map<String, dynamic> toJson() => _$GetListAmbumTracksToJson(this);
-// }
+class Tracks {
+  List<TrackDetailData>? data;
+  int? total;
 
-// @JsonSerializable()
-// class Tracks {
-//   @JsonKey(name: "AlbumTracks")
-//   List<AlbumTrack> albumTracks;
+  Tracks({this.data, this.total});
 
-//   Tracks({
-//     required this.albumTracks,
-//   });
+  Tracks.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = <TrackDetailData>[];
+      json['data'].forEach((v) {
+        data!.add(TrackDetailData.fromJson(v));
+      });
+    }
+    total = json['total'];
+  }
 
-//   factory Tracks.fromJson(Map<String, dynamic> json) => _$TracksFromJson(json);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    data['total'] = total;
+    return data;
+  }
+}
 
-//   Map<String, dynamic> toJson() => _$TracksToJson(this);
-// }
+class TrackDetailData {
+  int? id;
+  String? title;
+  String? titleShort;
+  String? titleVersion;
+  String? link;
+  int? duration;
+  int? rank;
+  bool? explicitLyrics;
+  int? explicitContentLyrics;
+  int? explicitContentCover;
+  String? preview;
+  String? md5Image;
+  int? position;
+  Artist? artist;
+  Album? album;
+  String? type;
 
-// @JsonSerializable()
-// class AlbumTrack {
-//   @JsonKey(name: "id")
-//   int id;
-//   @JsonKey(name: "readable")
-//   bool readable;
-//   @JsonKey(name: "title")
-//   String title;
-//   @JsonKey(name: "title_short")
-//   String titleShort;
-//   @JsonKey(name: "title_version")
-//   String titleVersion;
-//   @JsonKey(name: "link")
-//   String link;
-//   @JsonKey(name: "duration")
-//   int duration;
-//   @JsonKey(name: "rank")
-//   int rank;
-//   @JsonKey(name: "explicit_lyrics")
-//   bool explicitLyrics;
-//   @JsonKey(name: "explicit_content_lyrics")
-//   int explicitContentLyrics;
-//   @JsonKey(name: "explicit_content_cover")
-//   int explicitContentCover;
-//   @JsonKey(name: "preview")
-//   String preview;
-//   @JsonKey(name: "md5_image")
-//   Md5Image md5Image;
-//   @JsonKey(name: "artist")
-//   Artist artist;
-//   @JsonKey(name: "album")
-//   Album album;
-//   @JsonKey(name: "type")
-//   AlbumTrackType type;
+  TrackDetailData(
+      {this.id,
+      this.title,
+      this.titleShort,
+      this.titleVersion,
+      this.link,
+      this.duration,
+      this.rank,
+      this.explicitLyrics,
+      this.explicitContentLyrics,
+      this.explicitContentCover,
+      this.preview,
+      this.md5Image,
+      this.position,
+      this.artist,
+      this.album,
+      this.type});
 
-//   AlbumTrack({
-//     required this.id,
-//     required this.readable,
-//     required this.title,
-//     required this.titleShort,
-//     required this.titleVersion,
-//     required this.link,
-//     required this.duration,
-//     required this.rank,
-//     required this.explicitLyrics,
-//     required this.explicitContentLyrics,
-//     required this.explicitContentCover,
-//     required this.preview,
-//     required this.md5Image,
-//     required this.artist,
-//     required this.album,
-//     required this.type,
-//   });
+  TrackDetailData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    titleShort = json['title_short'];
+    titleVersion = json['title_version'];
+    link = json['link'];
+    duration = json['duration'];
+    rank = json['rank'];
+    explicitLyrics = json['explicit_lyrics'];
+    explicitContentLyrics = json['explicit_content_lyrics'];
+    explicitContentCover = json['explicit_content_cover'];
+    preview = json['preview'];
+    md5Image = json['md5_image'];
+    position = json['position'];
+    artist = json['artist'] != null ? Artist.fromJson(json['artist']) : null;
+    album = json['album'] != null ? Album.fromJson(json['album']) : null;
+    type = json['type'];
+  }
 
-//   factory AlbumTrack.fromJson(Map<String, dynamic> json) =>
-//       _$AlbumTrackFromJson(json);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['title_short'] = titleShort;
+    data['title_version'] = titleVersion;
+    data['link'] = link;
+    data['duration'] = duration;
+    data['rank'] = rank;
+    data['explicit_lyrics'] = explicitLyrics;
+    data['explicit_content_lyrics'] = explicitContentLyrics;
+    data['explicit_content_cover'] = explicitContentCover;
+    data['preview'] = preview;
+    data['md5_image'] = md5Image;
+    data['position'] = position;
+    if (artist != null) {
+      data['artist'] = artist!.toJson();
+    }
+    if (album != null) {
+      data['album'] = album!.toJson();
+    }
+    data['type'] = type;
+    return data;
+  }
+}
 
-//   Map<String, dynamic> toJson() => _$AlbumTrackToJson(this);
-// }
+class Artist {
+  int? id;
+  String? name;
+  String? link;
+  String? picture;
+  String? pictureSmall;
+  String? pictureMedium;
+  String? pictureBig;
+  String? pictureXl;
+  bool? radio;
+  String? tracklist;
+  String? type;
 
-// @JsonSerializable()
-// class Album {
-//   @JsonKey(name: "id")
-//   int id;
-//   @JsonKey(name: "title")
-//   Title title;
-//   @JsonKey(name: "cover")
-//   String cover;
-//   @JsonKey(name: "cover_small")
-//   String coverSmall;
-//   @JsonKey(name: "cover_medium")
-//   String coverMedium;
-//   @JsonKey(name: "cover_big")
-//   String coverBig;
-//   @JsonKey(name: "cover_xl")
-//   String coverXl;
-//   @JsonKey(name: "md5_image")
-//   Md5Image md5Image;
-//   @JsonKey(name: "tracklist")
-//   String tracklist;
-//   @JsonKey(name: "type")
-//   AlbumType type;
+  Artist(
+      {this.id,
+      this.name,
+      this.link,
+      this.picture,
+      this.pictureSmall,
+      this.pictureMedium,
+      this.pictureBig,
+      this.pictureXl,
+      this.radio,
+      this.tracklist,
+      this.type});
 
-//   Album({
-//     required this.id,
-//     required this.title,
-//     required this.cover,
-//     required this.coverSmall,
-//     required this.coverMedium,
-//     required this.coverBig,
-//     required this.coverXl,
-//     required this.md5Image,
-//     required this.tracklist,
-//     required this.type,
-//   });
+  Artist.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    link = json['link'];
+    picture = json['picture'];
+    pictureSmall = json['picture_small'];
+    pictureMedium = json['picture_medium'];
+    pictureBig = json['picture_big'];
+    pictureXl = json['picture_xl'];
+    radio = json['radio'];
+    tracklist = json['tracklist'];
+    type = json['type'];
+  }
 
-//   factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['link'] = link;
+    data['picture'] = picture;
+    data['picture_small'] = pictureSmall;
+    data['picture_medium'] = pictureMedium;
+    data['picture_big'] = pictureBig;
+    data['picture_xl'] = pictureXl;
+    data['radio'] = radio;
+    data['tracklist'] = tracklist;
+    data['type'] = type;
+    return data;
+  }
+}
 
-//   Map<String, dynamic> toJson() => _$AlbumToJson(this);
-// }
+class Album {
+  int? id;
+  String? title;
+  String? cover;
+  String? coverSmall;
+  String? coverMedium;
+  String? coverBig;
+  String? coverXl;
+  String? md5Image;
+  String? tracklist;
+  String? type;
 
-// enum Md5Image {
-//   @JsonValue("2e018122cb56986277102d2041a592c8")
-//   THE_2_E018122_CB56986277102_D2041_A592_C8
-// }
+  Album(
+      {this.id,
+      this.title,
+      this.cover,
+      this.coverSmall,
+      this.coverMedium,
+      this.coverBig,
+      this.coverXl,
+      this.md5Image,
+      this.tracklist,
+      this.type});
 
-// enum Title {
-//   @JsonValue("Discovery")
-//   DISCOVERY
-// }
+  Album.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    cover = json['cover'];
+    coverSmall = json['cover_small'];
+    coverMedium = json['cover_medium'];
+    coverBig = json['cover_big'];
+    coverXl = json['cover_xl'];
+    md5Image = json['md5_image'];
+    tracklist = json['tracklist'];
+    type = json['type'];
+  }
 
-// enum AlbumType {
-//   @JsonValue("album")
-//   ALBUM
-// }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['cover'] = cover;
+    data['cover_small'] = coverSmall;
+    data['cover_medium'] = coverMedium;
+    data['cover_big'] = coverBig;
+    data['cover_xl'] = coverXl;
+    data['md5_image'] = md5Image;
+    data['tracklist'] = tracklist;
+    data['type'] = type;
+    return data;
+  }
+}
 
-// @JsonSerializable()
-// class Artist {
-//   @JsonKey(name: "id")
-//   int id;
-//   @JsonKey(name: "name")
-//   Name name;
-//   @JsonKey(name: "tracklist")
-//   String tracklist;
-//   @JsonKey(name: "type")
-//   ArtistType type;
+class User {
+  int? id;
+  String? name;
+  String? tracklist;
+  String? type;
 
-//   Artist({
-//     required this.id,
-//     required this.name,
-//     required this.tracklist,
-//     required this.type,
-//   });
+  User({this.id, this.name, this.tracklist, this.type});
 
-//   factory Artist.fromJson(Map<String, dynamic> json) => _$ArtistFromJson(json);
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    tracklist = json['tracklist'];
+    type = json['type'];
+  }
 
-//   Map<String, dynamic> toJson() => _$ArtistToJson(this);
-// }
-
-// enum Name {
-//   @JsonValue("Daft Punk")
-//   DAFT_PUNK
-// }
-
-// enum ArtistType {
-//   @JsonValue("artist")
-//   ARTIST
-// }
-
-// enum AlbumTrackType {
-//   @JsonValue("track")
-//   TRACK
-// }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['tracklist'] = tracklist;
+    data['type'] = type;
+    return data;
+  }
+}

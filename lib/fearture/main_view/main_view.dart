@@ -1,10 +1,13 @@
-import 'package:app_nghe_nhac/View/Sings/sing_view.dart';
+import 'package:app_nghe_nhac/View/home/home_controller.dart';
 import 'package:app_nghe_nhac/View/setting/setting_view.dart';
+import 'package:app_nghe_nhac/View/songs/songs_view.dart';
 import 'package:app_nghe_nhac/common/color_extension.dart';
 import 'package:app_nghe_nhac/View/home/home_view.dart';
+import 'package:app_nghe_nhac/common_widget/icon_text_row.dart';
 import 'package:app_nghe_nhac/images/images_extention.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -37,11 +40,118 @@ class _MainViewState extends State<MainView>
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Get.put(HomeController());
+
+    var media = MediaQuery.sizeOf(context);
+
     return Scaffold(
+      key: homeController.scaffoldKey,
       backgroundColor: Colors.transparent,
+      drawer: Drawer(
+          backgroundColor: TColor.bg,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              SizedBox(
+                height: 200,
+                child: DrawerHeader(
+                  decoration: BoxDecoration(
+                      color: TColor.primaryText.withOpacity(0.03)),
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        ImagesAssset.logoApp,
+                        width: media.width * 0.15,
+                      ),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                '320\nSongs',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Color(0xffC1C0C0), fontSize: 12),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                '52\nAlbums',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Color(0xffC1C0C0), fontSize: 12),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                '87\nArtists',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Color(0xffC1C0C0), fontSize: 12),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              IconTextRow(
+                  title: 'Themes',
+                  icon: ImagesAssset.mTheme,
+                  onTap: () {
+                    homeController.closeDrawer();
+                  }),
+              IconTextRow(
+                  title: 'Ringtone Cutter',
+                  icon: ImagesAssset.mRingCut,
+                  onTap: () {
+                    homeController.closeDrawer();
+                  }),
+              IconTextRow(
+                  title: 'Sleep Timer',
+                  icon: ImagesAssset.mSleepTimer,
+                  onTap: () {
+                    homeController.closeDrawer();
+                  }),
+              IconTextRow(
+                  title: 'Equliser',
+                  icon: ImagesAssset.sMenu,
+                  onTap: () {
+                    homeController.closeDrawer();
+                  }),
+              IconTextRow(
+                  title: 'Driver Mode',
+                  icon: ImagesAssset.mDriverMode,
+                  onTap: () {
+                    homeController.closeDrawer();
+                  }),
+              IconTextRow(
+                  title: 'Hidden Folders',
+                  icon: ImagesAssset.mHiddenFolder,
+                  onTap: () {
+                    homeController.closeDrawer();
+                  }),
+              IconTextRow(
+                  title: 'Scan Media',
+                  icon: ImagesAssset.mScanMedia,
+                  onTap: () {
+                    homeController.closeDrawer();
+                  }),
+            ],
+          )),
       body: TabBarView(
         controller: tabController,
-        children: const [HomeView(), SingView(), SettingView()],
+        children: const [HomeView(), SongView(), SettingView()],
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(color: TColor.bg, boxShadow: const [

@@ -1,5 +1,10 @@
 import 'package:app_nghe_nhac/View/home/home_controller.dart';
 import 'package:app_nghe_nhac/common/color_extension.dart';
+import 'package:app_nghe_nhac/common_widget/playlist_cell.dart';
+import 'package:app_nghe_nhac/common_widget/recomended_cell.dart';
+import 'package:app_nghe_nhac/common_widget/songs_row.dart';
+import 'package:app_nghe_nhac/common_widget/title_section.dart';
+import 'package:app_nghe_nhac/common_widget/view_all_section.dart';
 import 'package:app_nghe_nhac/images/images_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +21,9 @@ class HomeView extends StatelessWidget {
         backgroundColor: TColor.bg,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            homeController.openDrawer();
+          },
           icon: Image.asset(
             ImagesAssset.menu,
             width: 25,
@@ -31,7 +38,7 @@ class HomeView extends StatelessWidget {
                 height: 32,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                    color: Color(0xff292E4B),
+                    color: const Color(0xff292E4B),
                     borderRadius: BorderRadius.circular(19)),
                 child: TextField(
                   controller: homeController.txtSearch.value,
@@ -60,17 +67,58 @@ class HomeView extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text(
-                'Hot Recommended',
-                style: TextStyle(
-                    color: TColor.primaryText80,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
-              ),
-            )
+            const TitleSection(title: 'Hot Recommended'),
+            SizedBox(
+              height: 200,
+              child: ListView.builder(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: homeController.hostRecommendedArr.length,
+                  itemBuilder: (context, index) {
+                    var mObj = homeController.hostRecommendedArr[index];
+                    return RecommendedCell(mObj: mObj);
+                  }),
+            ),
+            Divider(
+              color: Colors.white.withOpacity(0.07),
+              indent: 20,
+              endIndent: 20,
+            ),
+            ViewSection(title: 'PlayList', onPressed: () {}),
+            SizedBox(
+              height: 190,
+              child: ListView.builder(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: homeController.playListArr.length,
+                  itemBuilder: (context, index) {
+                    var mObj = homeController.playListArr[index];
+                    return PlaylistCell(mObj: mObj);
+                  }),
+            ),
+            Divider(
+              color: Colors.white.withOpacity(0.07),
+              indent: 20,
+              endIndent: 20,
+            ),
+            ViewSection(title: 'Recently Played', onPressed: () {}),
+            ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                itemCount: homeController.recentlyPlayedArr.length,
+                itemBuilder: (context, index) {
+                  var sObj = homeController.recentlyPlayedArr[index];
+                  return SongsRow(
+                    sObj: sObj,
+                    onPressedPlay: () {},
+                    onPressed: () {},
+                  );
+                }),
           ],
         ),
       ),

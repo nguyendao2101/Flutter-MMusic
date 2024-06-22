@@ -214,7 +214,7 @@ class SignUpView extends StatelessWidget {
                     onPressed: () {
                       Get.toNamed(AppRouterName.login);
                     },
-                    child: Text('hello'))
+                    child: const Text('hello'))
               ],
             ),
           ),
