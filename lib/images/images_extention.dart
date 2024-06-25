@@ -71,4 +71,31 @@ class ImagesAssset {
   static String playlist3 = '$baseImagePath/playlist_3.png';
   static String playlist4 = '$baseImagePath/playlist_4.png';
   static String add = '$baseImagePath/add.png';
+  static String play = '$baseImagePath/play.png';
+
+  //songs/album
+  static String album1 = '$baseImagePath/alb_1.png';
+  static String album2 = '$baseImagePath/alb_2.png';
+  static String album3 = '$baseImagePath/alb_3.png';
+  static String album4 = '$baseImagePath/alb_4.png';
+  static String album5 = '$baseImagePath/alb_5.png';
+  static String album6 = '$baseImagePath/alb_6.png';
+  static String moreBtn = '$baseImagePath/more_btn.png';
+  //songs/album detail
+  static String back = '$baseImagePath/back.png';
+  static String playN = '$baseImagePath/play_n.png';
+  static String share = '$baseImagePath/share.png';
+  static String playEq = '$baseImagePath/play_eq.png';
+  static String more = '$baseImagePath/more.png';
+
+  //mainplayer
+  static String nextSong = '$baseImagePath/next_song.png';
+  static String playerImage = '$baseImagePath/player_image.png';
+  static String previousSong = '$baseImagePath/previous_song.png';
+  static String close = '$baseImagePath/close.png';
+  static String eq = '$baseImagePath/eq.png';
+  static String eqDisplay = '$baseImagePath/eq_display.png';
+  static String repeat = '$baseImagePath/repeat.png';
+  static String shuffle = '$baseImagePath/shuffle.png';
+  static String pause = '$baseImagePath/pause.png';
 }

@@ -67,6 +67,71 @@ class SongsController extends GetxController {
   ].obs;
 
   //Album
+  final allAlbumList = [
+    {
+      "image": ImagesAssset.album1,
+      "name": "History",
+      "artists": "Michael Jackson",
+      "songs": "10 Songs"
+    },
+    {
+      "image": ImagesAssset.album2,
+      "name": "Thriller",
+      "artists": "Michael Jackson",
+      "songs": "10 Songs"
+    },
+    {
+      "image": ImagesAssset.album3,
+      "name": "It Won't Be Soon. . ",
+      "artists": "Maroon 5",
+      "songs": "10 Songs"
+    },
+    {
+      "image": ImagesAssset.album4,
+      "name": "I Am... Yours",
+      "artists": "Beyonce",
+      "songs": "10 Songs"
+    },
+    {
+      "image": ImagesAssset.album5,
+      "name": "Earth song",
+      "artists": "Michael Jackson",
+      "songs": "10 Songs"
+    },
+    {
+      "image": ImagesAssset.album6,
+      "name": "Smooth criminal",
+      "artists": "Michael Jackson",
+      "songs": "10 Songs"
+    }
+  ].obs;
+
+  final playedAlbumArr = [
+    {"duration": "3:56", "name": "Billie Jean", "artists": "Michael Jackson"},
+    {"duration": "3:56", "name": "Earth Song", "artists": "Michael Jackson"},
+    {"duration": "3:56", "name": "Mirror", "artists": "Justin Timberlake"},
+    {
+      "duration": "3:56",
+      "name": "Remember the Time",
+      "artists": "Michael Jackson"
+    },
+    {"duration": "3:56", "name": "Billie Jean", "artists": "Michael Jackson"},
+    {"duration": "3:56", "name": "Earth Song", "artists": "Michael Jackson"},
+    {"duration": "3:56", "name": "Mirror", "artists": "Justin Timberlake"},
+    {
+      "duration": "3:56",
+      "name": "Remember the Time",
+      "artists": "Michael Jackson"
+    },
+    {"duration": "3:56", "name": "Billie Jean", "artists": "Michael Jackson"},
+    {"duration": "3:56", "name": "Earth Song", "artists": "Michael Jackson"},
+    {"duration": "3:56", "name": "Mirror", "artists": "Justin Timberlake"},
+    {
+      "duration": "3:56",
+      "name": "Remember the Time",
+      "artists": "Michael Jackson"
+    }
+  ].obs;
   //Artists
   //Genres
 }

@@ -21,7 +21,7 @@ class _AlbumApiRetrofit implements AlbumApiRetrofit {
   String? baseUrl;
 
   @override
-  Future<GetMusicChartResponse> getListAlbum() async {
+  Future<GetMusicChartResponse> getListAlbum(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -34,7 +34,7 @@ class _AlbumApiRetrofit implements AlbumApiRetrofit {
     )
             .compose(
               _dio.options,
-              '/',
+              '/album/${id}',
               queryParameters: queryParameters,
               data: _data,
             )

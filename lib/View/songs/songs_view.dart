@@ -1,4 +1,5 @@
 import 'package:app_nghe_nhac/View/home/home_controller.dart';
+import 'package:app_nghe_nhac/View/songs/album_view.dart';
 import 'package:app_nghe_nhac/View/songs/all_songs_view.dart';
 import 'package:app_nghe_nhac/View/songs/play_list_view.dart';
 import 'package:app_nghe_nhac/common/color_extension.dart';
@@ -119,12 +120,7 @@ class _SongViewState extends State<SongView> with TickerProviderStateMixin {
               children: [
                 const AllSongsView(),
                 const PlayListView(),
-                Center(
-                  child: Text(
-                    'Albums',
-                    style: TextStyle(color: TColor.primaryText80),
-                  ),
-                ),
+                const AlbumsView(),
                 Center(
                   child: Text(
                     'Artists',

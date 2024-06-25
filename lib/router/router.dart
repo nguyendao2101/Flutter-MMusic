@@ -12,6 +12,8 @@ import 'package:app_nghe_nhac/fearture/login/login_binding.dart';
 import 'package:app_nghe_nhac/fearture/login/login_view.dart';
 import 'package:app_nghe_nhac/fearture/splash_tabview/splash_binding.dart';
 import 'package:app_nghe_nhac/fearture/splash_tabview/splash_view.dart';
+import 'package:app_nghe_nhac/main_player/main_player_binding.dart';
+import 'package:app_nghe_nhac/main_player/main_player_view.dart';
 import 'package:get/get.dart';
 
 class AppRouter {
@@ -38,7 +40,7 @@ class AppRouter {
     ),
     GetPage(
       name: AppRouterName.home,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -51,6 +53,11 @@ class AppRouter {
       page: () => const SettingView(),
       binding: SettingBinding(),
     ),
+    GetPage(
+      name: AppRouterName.mainPlayer,
+      page: () => const MainPlayerView(),
+      binding: MainPlayerBinding(),
+    ),
   ];
 }
 
@@ -62,4 +69,5 @@ class AppRouterName {
   static const home = '/home';
   static const songs = '/songs';
   static const setting = '/setting';
+  static const mainPlayer = '/mainPlayer';
 }

@@ -151,7 +151,7 @@ class _MainViewState extends State<MainView>
           )),
       body: TabBarView(
         controller: tabController,
-        children: const [HomeView(), SongView(), SettingView()],
+        children: [HomeView(), SongView(), SettingView()],
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(color: TColor.bg, boxShadow: const [

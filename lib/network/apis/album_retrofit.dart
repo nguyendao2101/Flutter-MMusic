@@ -8,6 +8,6 @@ part 'album_retrofit.g.dart';
 @RestApi(baseUrl: Constants.BASE_URL)
 abstract class AlbumApiRetrofit {
   factory AlbumApiRetrofit(Dio dio, {String baseUrl}) = _AlbumApiRetrofit;
-  @GET("/")
-  Future<GetMusicChartResponse> getListAlbum();
+  @GET("/album/{id}")
+  Future<GetMusicChartResponse> getListAlbum(@Path() int id);
 }

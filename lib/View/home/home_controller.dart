@@ -1,5 +1,7 @@
 import 'package:app_nghe_nhac/images/images_extention.dart';
 import 'package:app_nghe_nhac/model/album/album_response.dart';
+import 'package:app_nghe_nhac/network/config/date_state.dart';
+import 'package:app_nghe_nhac/network/repositories/album_repositories.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,19 +16,18 @@ enum GetListAlbumStatus {
 class HomeController extends GetxController {
   final txtSearch = TextEditingController().obs;
 
-  List<Tracks> listAlbum = <Tracks>[].obs;
+  List<TrackDetailData> listAlbum = <TrackDetailData>[].obs;
   final getListAlbumStatus = GetListAlbumStatus.initial.obs;
 
-  // Future<void> getListManga() async {
-  //   getListAlbumStatus.value = GetListAlbumStatus.isLoading;
-  //   final getAlbumResponses = await HomeRepository().getListAlbum();
-  //   if (getAlbumResponses is DataSuccess) {
-  //     // listAlbum = getAlbumResponses.data?.albums ?? [];
-  //     listAlbum.addAll(getAlbumResponses.data.tracks?.data??[]);
+  Future<void> getListALbum(int id) async {
+    getListAlbumStatus.value = GetListAlbumStatus.isLoading;
+    final getAlbumResponses = await HomeRepository().getListAlbum(id);
+    if (getAlbumResponses is DataSuccess) {
+      listAlbum = getAlbumResponses.data?.albums?.data ?? [];
+    }
+    getListAlbumStatus.value = GetListAlbumStatus.loaded;
+  }
 
-  //   }
-  //   getListAlbumStatus.value = GetListAlbumStatus.loaded;
-  // }
   //  void getChartMusic() async {
   //   getMusicChartStatus.value = GetMusicChartStatus.isLoading;
   //   final getMusicChartResponse = await HomeRepository().getMusicChart();

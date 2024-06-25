@@ -61,7 +61,7 @@ class PlaylistSongsCell extends StatelessWidget {
               InkWell(
                 onTap: onPressedPlay,
                 child: Image.asset(
-                  ImagesAssset.playlist,
+                  ImagesAssset.play,
                   width: 22,
                   height: 22,
                 ),
