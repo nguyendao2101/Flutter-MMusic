@@ -41,15 +41,23 @@ class GetMusicChartResponse {
 
 class Tracks {
   List<TrackDetailData>? data;
+  List<Album>? Albumdata;
+
   int? total;
 
-  Tracks({this.data, this.total});
+  Tracks({this.data, this.Albumdata, this.total});
 
   Tracks.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <TrackDetailData>[];
       json['data'].forEach((v) {
         data!.add(TrackDetailData.fromJson(v));
+      });
+    }
+    if (json['Albumdata'] != null) {
+      Albumdata = <Album>[];
+      json['Albumdata'].forEach((v) {
+        Albumdata!.add(Album.fromJson(v));
       });
     }
     total = json['total'];
@@ -199,6 +207,32 @@ class Artist {
     data['radio'] = radio;
     data['tracklist'] = tracklist;
     data['type'] = type;
+    return data;
+  }
+}
+
+class AlbumTracks {
+  List<Album>? data;
+  int? total;
+
+  AlbumTracks({this.data, this.total});
+
+  AlbumTracks.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = <Album>[];
+      json['data'].forEach((v) {
+        data!.add(Album.fromJson(v));
+      });
+    }
+    total = json['total'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    data['total'] = total;
     return data;
   }
 }

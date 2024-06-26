@@ -4,10 +4,10 @@ import 'package:app_nghe_nhac/View/songs/songs_binding.dart';
 import 'package:app_nghe_nhac/View/songs/songs_view.dart';
 import 'package:app_nghe_nhac/View/home/home_binding.dart';
 import 'package:app_nghe_nhac/View/home/home_view.dart';
+import 'package:app_nghe_nhac/fearture/main_view/main_view.dart';
 import 'package:app_nghe_nhac/fearture/signUp/signUp_binding.dart';
 import 'package:app_nghe_nhac/fearture/signUp/signUp_view.dart';
 import 'package:app_nghe_nhac/fearture/main_view/main_binding.dart';
-import 'package:app_nghe_nhac/fearture/main_view/main_view.dart';
 import 'package:app_nghe_nhac/fearture/login/login_binding.dart';
 import 'package:app_nghe_nhac/fearture/login/login_view.dart';
 import 'package:app_nghe_nhac/fearture/splash_tabview/splash_binding.dart';
@@ -30,7 +30,7 @@ class AppRouter {
     ),
     GetPage(
       name: AppRouterName.main,
-      page: () => const MainView(),
+      page: () => MainView(),
       binding: MainBinding(),
     ),
     GetPage(
@@ -40,7 +40,7 @@ class AppRouter {
     ),
     GetPage(
       name: AppRouterName.home,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(

@@ -1,7 +1,8 @@
 import 'package:app_nghe_nhac/images/images_extention.dart';
-import 'package:app_nghe_nhac/model/album/album_response.dart';
+import 'package:app_nghe_nhac/model/chart_music/chart_music_response.dart';
 import 'package:app_nghe_nhac/network/config/date_state.dart';
-import 'package:app_nghe_nhac/network/repositories/album_repositories.dart';
+import 'package:app_nghe_nhac/network/repositories/album/album_repositories.dart';
+import 'package:app_nghe_nhac/network/repositories/chart_music/chart_music_repositories.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,20 +14,52 @@ enum GetListAlbumStatus {
   loadmore,
 }
 
+enum GetListChartMusicStatus {
+  initial,
+  isLoading,
+  loaded,
+  failed,
+  loadmore,
+}
+// enum GetListChartMusicStatus {
+//   initial,
+//   isLoading,
+//   loaded,
+//   failed,
+//   loadmore,
+// }
+
 class HomeController extends GetxController {
   final txtSearch = TextEditingController().obs;
 
+  //chart_music/album
   List<TrackDetailData> listAlbum = <TrackDetailData>[].obs;
   final getListAlbumStatus = GetListAlbumStatus.initial.obs;
 
-  Future<void> getListALbum(int id) async {
+  Future<void> getListALbum() async {
     getListAlbumStatus.value = GetListAlbumStatus.isLoading;
-    final getAlbumResponses = await HomeRepository().getListAlbum(id);
+    final getAlbumResponses = await ChartMusicRepository().getListChartMusic();
     if (getAlbumResponses is DataSuccess) {
-      listAlbum = getAlbumResponses.data?.albums?.data ?? [];
+      listAlbum = getAlbumResponses.data?.tracks?.data ?? [];
     }
     getListAlbumStatus.value = GetListAlbumStatus.loaded;
   }
+
+  //chart_music/tracks
+
+  List<TrackDetailData> listChartMusic = <TrackDetailData>[].obs;
+  final getListChartMusicStatus = GetListChartMusicStatus.initial.obs;
+  Future<void> getListChartMusic() async {
+    getListChartMusicStatus.value = GetListChartMusicStatus.isLoading;
+    final getListChartMusicResponses =
+        await ChartMusicRepository().getListChartMusic();
+    if (getListChartMusicResponses is DataSuccess) {
+      listChartMusic = getListChartMusicResponses.data?.tracks?.data ?? [];
+    }
+    getListChartMusicStatus.value = GetListChartMusicStatus.loaded;
+  }
+
+  //chart_music/playlist
 
   //  void getChartMusic() async {
   //   getMusicChartStatus.value = GetMusicChartStatus.isLoading;
