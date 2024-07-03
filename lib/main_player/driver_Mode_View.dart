@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:app_nghe_nhac/images/images_extention.dart';
 import 'package:app_nghe_nhac/main_player/playPlayListView.dart';
 import 'package:flutter/material.dart';

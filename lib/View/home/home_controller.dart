@@ -1,7 +1,6 @@
 import 'package:app_nghe_nhac/images/images_extention.dart';
 import 'package:app_nghe_nhac/model/chart_music/chart_music_response.dart';
 import 'package:app_nghe_nhac/network/config/date_state.dart';
-import 'package:app_nghe_nhac/network/repositories/album/album_repositories.dart';
 import 'package:app_nghe_nhac/network/repositories/chart_music/chart_music_repositories.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,57 +20,46 @@ enum GetListChartMusicStatus {
   failed,
   loadmore,
 }
-// enum GetListChartMusicStatus {
-//   initial,
-//   isLoading,
-//   loaded,
-//   failed,
-//   loadmore,
-// }
 
 class HomeController extends GetxController {
   final txtSearch = TextEditingController().obs;
 
-  //chart_music/album
-  List<TrackDetailData> listAlbum = <TrackDetailData>[].obs;
+  // chart_music/album
+  List<Album> listAlbum = <Album>[].obs;
   final getListAlbumStatus = GetListAlbumStatus.initial.obs;
 
-  Future<void> getListALbum() async {
+  Future<void> getListAlbum() async {
     getListAlbumStatus.value = GetListAlbumStatus.isLoading;
     final getAlbumResponses = await ChartMusicRepository().getListChartMusic();
     if (getAlbumResponses is DataSuccess) {
-      listAlbum = getAlbumResponses.data?.tracks?.data ?? [];
+      listAlbum = getAlbumResponses.data?.albums?.albumData ?? [];
+      // ignore: avoid_print
+      print(
+          "Fetched album list successfully: ${listAlbum.length} albums found.");
+      getListAlbumStatus.value = GetListAlbumStatus.loaded;
+    } else {
+      // ignore: avoid_print
+      print("Failed to fetch album list.");
+      getListAlbumStatus.value = GetListAlbumStatus.failed;
     }
-    getListAlbumStatus.value = GetListAlbumStatus.loaded;
   }
 
-  //chart_music/tracks
-
+  // chart_music/tracks
   List<TrackDetailData> listChartMusic = <TrackDetailData>[].obs;
   final getListChartMusicStatus = GetListChartMusicStatus.initial.obs;
+
   Future<void> getListChartMusic() async {
     getListChartMusicStatus.value = GetListChartMusicStatus.isLoading;
     final getListChartMusicResponses =
         await ChartMusicRepository().getListChartMusic();
     if (getListChartMusicResponses is DataSuccess) {
       listChartMusic = getListChartMusicResponses.data?.tracks?.data ?? [];
+      getListChartMusicStatus.value = GetListChartMusicStatus.loaded;
+    } else {
+      getListChartMusicStatus.value = GetListChartMusicStatus.failed;
     }
-    getListChartMusicStatus.value = GetListChartMusicStatus.loaded;
   }
 
-  //chart_music/playlist
-
-  //  void getChartMusic() async {
-  //   getMusicChartStatus.value = GetMusicChartStatus.isLoading;
-  //   final getMusicChartResponse = await HomeRepository().getMusicChart();
-  //   if (getMusicChartResponse is DataSuccess) {
-  //     listTrackItem.addAll(getMusicChartResponse.data.tracks?.data ?? []);
-  //     getMusicChartStatus.value = GetMusicChartStatus.loaded;
-  //   }
-  //   if (getMusicChartResponse is DataFailed) {
-  //     getMusicChartStatus.value = GetMusicChartStatus.failed;
-  //   }
-  // }
   var scaffoldKey = GlobalKey<ScaffoldState>();
   void openDrawer() {
     scaffoldKey.currentState?.openDrawer();

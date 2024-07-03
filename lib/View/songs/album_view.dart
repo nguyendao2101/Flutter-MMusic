@@ -2,7 +2,6 @@ import 'package:app_nghe_nhac/View/songs/albums_detail.dart';
 import 'package:app_nghe_nhac/View/songs/songs_controller.dart';
 import 'package:app_nghe_nhac/common/color_extension.dart';
 import 'package:app_nghe_nhac/common_widget/album_cell.dart';
-import 'package:app_nghe_nhac/router/router.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +36,7 @@ class _AlbumsViewState extends State<AlbumsView> {
             return AlbumCell(
               aObj: aObj,
               onPressed: () {
-                Get.to(AlbumDetailsView());
+                Get.to(const AlbumDetailsView());
               },
               onPressedMenu: (selecIndex) {
                 if (kDebugMode) {

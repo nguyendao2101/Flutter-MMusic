@@ -1,3 +1,4 @@
+import 'package:app_nghe_nhac/View/home/home_controller.dart';
 import 'package:app_nghe_nhac/common/color_extension.dart';
 import 'package:app_nghe_nhac/common_widget/player_bottom_button.dart';
 import 'package:app_nghe_nhac/images/images_extention.dart';
@@ -16,9 +17,18 @@ class MainPlayerView extends StatefulWidget {
 
 class _MainPlayerViewState extends State<MainPlayerView> {
   int selectab = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    final homeController = Get.put(HomeController());
+    homeController.getListAlbum();
+    // homeController.getListChartMusic();
+  }
+
   @override
   Widget build(BuildContext context) {
-    void _togglePlayPause() {
+    void togglePlayPause() {
       setState(() {
         selectab = selectab == 0 ? 1 : 0; // Chuyển đổi trạng thái play/pause
       });
@@ -277,7 +287,7 @@ class _MainPlayerViewState extends State<MainPlayerView> {
                   height: 60,
                   child: IconButton(
                     onPressed: () {
-                      _togglePlayPause();
+                      togglePlayPause();
                     },
                     icon: Image.asset(
                       selectab == 0 ? ImagesAssset.play : (ImagesAssset.pause),

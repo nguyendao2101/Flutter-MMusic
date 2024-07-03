@@ -30,7 +30,7 @@ class AppRouter {
     ),
     GetPage(
       name: AppRouterName.main,
-      page: () => MainView(),
+      page: () => const MainView(),
       binding: MainBinding(),
     ),
     GetPage(

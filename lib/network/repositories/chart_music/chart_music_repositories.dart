@@ -7,10 +7,6 @@ class ChartMusicRepository {
   Future<DataState<GetMusicChartResponse?>> getListChartMusic() async {
     final responseFromApi =
         await ChartMusicApiRetrofit(Dio()).getListChartMusic();
-    if (responseFromApi != null) {
-      return DataSuccess(data: responseFromApi);
-    } else {
-      return DataFailed(data: responseFromApi);
-    }
+    return DataSuccess(data: responseFromApi);
   }
 }

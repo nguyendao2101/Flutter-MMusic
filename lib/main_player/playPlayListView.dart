@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:app_nghe_nhac/View/songs/songs_controller.dart';
 import 'package:app_nghe_nhac/common_widget/all_song_row.dart';
 import 'package:app_nghe_nhac/images/images_extention.dart';
